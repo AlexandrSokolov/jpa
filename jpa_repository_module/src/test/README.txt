@@ -19,8 +19,17 @@ TODO list for testing repotory services:
             <version>10.9.1.0</version>
             <scope>test</scope>
         </dependency>
+        ...
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+                <systemPropertyVariables>
+                    <derby.system.home>${basedir}/target/</derby.system.home>
+                </systemPropertyVariables>
+            </configuration>
+        </plugin>
 5. You must create a new EntityManager and start new transaction before each test and commit transaction after each test.
    Do it via RepositoryServiceTestBase base class for tests.
 6. Run tests:
    mvn clean test
-
