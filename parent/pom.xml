@@ -12,7 +12,8 @@
     <modules>
         <module>../database_module</module>
         <module>../api_module</module>
-        <module>../jpa_module</module>
+        <module>../jpa_repository_module</module>
+        <module>../jpa_component_module</module>
         <module>../boundary_module</module>
     </modules>
 
@@ -22,7 +23,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <apiVersion>1.0.0-SNAPSHOT</apiVersion>
+        <jpaRepositoryVersion>1.0.0-SNAPSHOT</jpaRepositoryVersion>
+        <jpaComponentVersion>1.0.0-SNAPSHOT</jpaComponentVersion>
         <guavaVersion>19.0</guavaVersion>
+        <commonsCollection>4.0</commonsCollection>
+        <junitVersion>4.12</junitVersion>
     </properties>
 
     <dependencyManagement>
@@ -39,10 +44,35 @@
                 <version>${guavaVersion}</version>
             </dependency>
             <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${commonsCollection}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.savdev.jpa</groupId>
                 <artifactId>api_module</artifactId>
                 <version>${apiVersion}</version>
             </dependency>
+            <dependency>
+                <groupId>com.savdev.jpa</groupId>
+                <artifactId>jpa_repository_module</artifactId>
+                <version>${jpaRepositoryVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.savdev.jpa</groupId>
+                <artifactId>jpa_component_module</artifactId>
+                <version>${jpaComponentVersion}</version>
+            </dependency>
+
+            <!--test scope depenencies START-->
+            <!-- https://mvnrepository.com/artifact/junit/junit -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junitVersion}</version>
+                <scope>tst</scope>
+            </dependency>
+            <!--test scope depenencies END-->
         </dependencies>
     </dependencyManagement>
 

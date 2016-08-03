@@ -1,0 +1,1 @@
+We want to test here all layers, from component UserService service to services it uses.
