@@ -1,3 +1,8 @@
+User jar instead of war for integration tests,
+search for by 'merge' in:
+https://developer.jboss.org/thread/237174?start=0&tstart=0
+rename tests to IT
+implement database module, add into integration test logic from it
 use transoformers to avoid lazy exceptions
 Named qury to select entities
 Named query to update entities
