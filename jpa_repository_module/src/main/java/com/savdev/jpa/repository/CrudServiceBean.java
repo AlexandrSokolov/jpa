@@ -14,7 +14,7 @@ import com.savdev.service.CrudService;
  */
 public class CrudServiceBean implements CrudService {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "usersPersistenceUnit")
     EntityManager em;
 
     @Override

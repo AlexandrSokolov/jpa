@@ -23,7 +23,7 @@ public class RepositoryServiceTestBase {
 
     @Before
     public void initEntityManagerAndStartTransaction(){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("demo");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("usersPersistenceUnit");
         this.crudService = new CrudServiceBean();
         this.entityManager = emf.createEntityManager();
         crudService.em = entityManager;
