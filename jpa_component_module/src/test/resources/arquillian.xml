@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arquillian xmlns="http://jboss.com/arquillian"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+
+    <!--in case you use several configurations set in the pom.xml file-->
+    <!--<systemPropertyVariables>-->
+    <!--<arquillian.launch>wildfly-managed</arquillian.launch>-->
+    <container qualifier="wildfly-managed" default="true">
+        <configuration>
+            <property name="managementPort">19990</property>
+            <property name="serverConfig">standalone-full-test.xml</property>
+        </configuration>
+    </container>
+
+
+</arquillian>
