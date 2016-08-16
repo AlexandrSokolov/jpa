@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="db.datasets_1" author="sav">
+        <preConditions onFail="MARK_RAN">
+            <changeLogPropertyDefined property="dataset" value="production"/>
+        </preConditions>
+
+        <insert tableName="users">
+            <column name="id" value="1" />
+            <column name="name" value="student 1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="csv.datasets_1" author="sav">
+        <preConditions onFail="MARK_RAN">
+            <changeLogPropertyDefined property="dataset" value="production"/>
+        </preConditions>
+
+        <loadData encoding="UTF-8"
+                  file="database/datasets/csv/users.csv"
+                  quotchar='"'
+                  separator="|"
+                  tableName="users">
+            <column name="id" type="NUMERIC"/>
+            <column name="name" type="STRING"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>

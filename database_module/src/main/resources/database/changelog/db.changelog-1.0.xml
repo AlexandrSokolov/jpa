@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <property name="clob.type" value="clob" dbms="oracle,h2,hsqldb,postgresql"/>
+    <property name="clob.type" value="longtext" dbms="mysql"/>
+
+    <changeSet id="dbSchema" author="sav">
+
+        <createTable tableName="id_gen">
+            <column name="gen_name" type="varchar(80)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="gen_val" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="id_gen">
+            <column name="gen_name" value="emp_gen_tbl_gen"/>
+            <column name="gen_val" value="10"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

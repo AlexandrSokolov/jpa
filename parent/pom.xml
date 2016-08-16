@@ -26,6 +26,7 @@
         <jpaRepositoryVersion>1.0.0-SNAPSHOT</jpaRepositoryVersion>
         <jpaComponentVersion>1.0.0-SNAPSHOT</jpaComponentVersion>
         <guavaVersion>19.0</guavaVersion>
+        <liquiBaseVersion>3.5.1</liquiBaseVersion>
         <commonsCollection>4.0</commonsCollection>
         <junitVersion>4.12</junitVersion>
     </properties>
@@ -37,6 +38,18 @@
                 <artifactId>javaee-api</artifactId>
                 <version>7.0</version>
                 <scope>provided</scope>
+            </dependency>
+
+            <!--compile scope START-->
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>${liquiBaseVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-cdi</artifactId>
+                <version>${liquiBaseVersion}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
@@ -63,6 +76,7 @@
                 <artifactId>jpa_component_module</artifactId>
                 <version>${jpaComponentVersion}</version>
             </dependency>
+            <!--compile scope END-->
 
             <!--test scope depenencies START-->
             <!-- https://mvnrepository.com/artifact/junit/junit -->

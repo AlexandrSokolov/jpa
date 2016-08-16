@@ -1,8 +1,15 @@
+database module update, check what '-Ddataset=production' means in:
+mvn clean install -Phsqldb -Ddataset=production liquibase:update | tee dbupdate.log 2>&1
+database module update, cdi bean add, test with integration tests
 User jar instead of war for integration tests,
 search for by 'merge' in:
 https://developer.jboss.org/thread/237174?start=0&tstart=0
 rename tests to IT
 implement database module, add into integration test logic from it
+add update logic with testing in all layers
+add delete logic
 use transoformers to avoid lazy exceptions
 Named qury to select entities
 Named query to update entities
+create entity with all possible fields
+create entity with enums to see all ways
