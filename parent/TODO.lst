@@ -1,5 +1,5 @@
-database module update, check what '-Ddataset=production' means in:
-mvn clean install -Phsqldb -Ddataset=production liquibase:update | tee dbupdate.log 2>&1
+create new web module that aggregates all existing module, move integration test into this module,
+chanage comment of jpa_component_module, it must inlcude only unit tests
 database module update, cdi bean add, test with integration tests
 User jar instead of war for integration tests,
 search for by 'merge' in:
@@ -13,3 +13,15 @@ Named qury to select entities
 Named query to update entities
 create entity with all possible fields
 create entity with enums to see all ways
+parent-child relationship
+parent-collections relationship
+add store procedure example , it must be recreated after each db update
+add script to be able to run liquibase changeset more than one time, you apply it, you edit it, you apply it again
+move documentation from database_module to google drive
+fix warnings during build:
+Warning:java: Supported source version 'RELEASE_6' from annotation processor 'org.eclipse.sisu.space.SisuIndexAPT6' less than -source '1.8'
+/home/alexandr/projects/jpa/jpa_repository_module/src/main/java/com/savdev/jpa/repository/UserRepositoryServiceBean.java
+Information:java: Some input files use unchecked or unsafe operations.
+Information:java: Recompile with -Xlint:unchecked for details.
+
+think about using cdi without container, what really will change? add integration tests for it.

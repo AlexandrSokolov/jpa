@@ -1,6 +1,7 @@
 package com.savdev.jpa.component;
 
 import java.io.File;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.inject.Inject;
@@ -13,8 +14,12 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.jboss.shrinkwrap.resolver.api.maven.ScopeType;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import com.google.common.collect.Lists;
+import com.savdev.api.User;
 
 /**
  *
@@ -24,6 +29,11 @@ public class UserServiceTest {
 
     @Inject
     UserService userService;
+
+    public static final long existingUser1Id = 5L;
+    public static final long existingUser2Id = 10L;
+    public static final String existingUser1Name = "comment_2_value";
+    public static final String existingUser2Name = "comment_3_value";
 
     @Deployment
     public static WebArchive createDeployment() {
@@ -46,4 +56,16 @@ public class UserServiceTest {
         Assert.assertEquals("test", "test");
     }
 
+    /*
+        users should be loaded by liquibase when application starts up from csv file
+     */
+    @Ignore
+    @Test
+    public void testLoadingUsersFromCvs() {
+        //users with
+        List<User> users = userService.findByIds(Lists.newArrayList(existingUser1Id, existingUser2Id));
+        Assert.assertEquals(2, users.size());
+        Assert.assertEquals(existingUser1Name, users.get(0).getName());
+        Assert.assertEquals(existingUser2Name, users.get(1).getName());
+    }
 }
