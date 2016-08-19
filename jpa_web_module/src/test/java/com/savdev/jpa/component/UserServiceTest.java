@@ -14,7 +14,6 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.jboss.shrinkwrap.resolver.api.maven.ScopeType;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -43,7 +42,6 @@ public class UserServiceTest {
                 .importDependencies(ScopeType.COMPILE, ScopeType.TEST, ScopeType.PROVIDED, ScopeType.RUNTIME, ScopeType.IMPORT).resolve().withTransitivity().asFile();
 
         WebArchive war = ShrinkWrap.create(WebArchive.class, "user_test.war")
-                .addClasses(UserService.class)
                 .addAsLibraries(files)
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
         System.out.println(war.toString(true));
@@ -59,7 +57,6 @@ public class UserServiceTest {
     /*
         users should be loaded by liquibase when application starts up from csv file
      */
-    @Ignore
     @Test
     public void testLoadingUsersFromCvs() {
         //users with
@@ -67,5 +64,6 @@ public class UserServiceTest {
         Assert.assertEquals(2, users.size());
         Assert.assertEquals(existingUser1Name, users.get(0).getName());
         Assert.assertEquals(existingUser2Name, users.get(1).getName());
+        Assert.assertTrue(false);
     }
 }

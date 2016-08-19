@@ -5,14 +5,10 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <!--maven classpath db structure-->
-    <includeAll path="changelog" relativeToChangelogFile="true"/>
+    <!--all changelogs-->
+    <includeAll path="database/changelog" />
 
-    <!--include one by one file only:-->
-    <!--<include file="changelog/db.changelog-1.0.xml" relativeToChangelogFile="true"/>-->
-    <!--<include file="database/changelog/db.changelog-1.0.xml"/>-->
-
-    <!--datasets, relating to classpath:-->
-    <includeAll path="datasets" relativeToChangelogFile="true"/>
+    <!--all datasets:-->
+    <includeAll path="database/datasets" />
 
 </databaseChangeLog>

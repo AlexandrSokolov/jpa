@@ -4,6 +4,7 @@ database module update, cdi bean add, test with integration tests
 User jar instead of war for integration tests,
 search for by 'merge' in:
 https://developer.jboss.org/thread/237174?start=0&tstart=0
+boundary_module, it should be a rest, why we need it? it is in jpa_web_module should be
 rename tests to IT
 implement database module, add into integration test logic from it
 add update logic with testing in all layers

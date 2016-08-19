@@ -13,7 +13,7 @@ import com.savdev.jpa.repository.UserRepositoryService;
 import com.savdev.service.GenericCrudService;
 
 /**
- * Created by alexandr on 01.08.16.
+ *
  */
 public class UserService implements GenericCrudService<User, Long> {
 
