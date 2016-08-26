@@ -6,18 +6,22 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import com.savdev.api.User;
 import com.savdev.service.CrudService;
 import com.savdev.service.GenericCrudService;
 
 /**
- * ER - reable interface of an entity, for instance User
- * EW - writable interface of an entity, for instance UserMutable
+ * E jpa entity, for instance UserEntity
  */
 public class GenericCrudServiceBean<E, PK extends Serializable> implements GenericCrudService<E, PK> {
 
+    final Class<E> entityType;
+
     @Inject
     CrudService crudService;
+
+    public GenericCrudServiceBean(Class<E> entityType) {
+        this.entityType = entityType;
+    }
 
     @Override
     public E create(E e) {
@@ -36,7 +40,7 @@ public class GenericCrudServiceBean<E, PK extends Serializable> implements Gener
 
     @Override
     public E find(PK id) {
-        return crudService.find(User.class, id);
+        return crudService.find(entityType, id);
     }
 
     @Override

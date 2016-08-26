@@ -1,5 +1,7 @@
 package com.savdev.jpa.repository;
 
+import java.io.IOException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -31,7 +33,7 @@ public class RepositoryServiceTestBase {
     }
 
     @After
-    public void stopTransaction(){
-        this.entityManager.getTransaction().commit();
+    public void stopTransaction() throws IOException {
+        this.entityManager.getTransaction().rollback();
     }
 }

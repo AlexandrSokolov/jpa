@@ -9,7 +9,7 @@ import com.savdev.jpa.entity.UserEntity;
 /**
  *
  */
-public class UserRepositoryServiceBeanTest extends RepositoryServiceTestBase {
+public class UserRepositoryServiceBeanIT extends RepositoryServiceTestBase {
 
     public static final String USER_NAME = "Test Name";
 
@@ -29,5 +29,18 @@ public class UserRepositoryServiceBeanTest extends RepositoryServiceTestBase {
         UserEntity createdUserEntity = userRepositoryServiceBean.create(userEntity);
         Assert.assertTrue(createdUserEntity.getId() > 0);
         Assert.assertEquals(userEntity.getName(), createdUserEntity.getName());
+    }
+
+    @Test
+    public void createAndFindUser(){
+        UserEntity userEntity = new UserEntity();
+        userEntity.setName(USER_NAME);
+        Assert.assertEquals(0, userEntity.getId());
+        UserEntity createdUserEntity = userRepositoryServiceBean.create(userEntity);
+        Assert.assertTrue(createdUserEntity.getId() > 0);
+        Assert.assertEquals(userEntity.getName(), createdUserEntity.getName());
+
+        UserEntity foundUser = userRepositoryServiceBean.find(createdUserEntity.getId());
+        Assert.assertEquals(createdUserEntity.getId(), foundUser.getId());
     }
 }

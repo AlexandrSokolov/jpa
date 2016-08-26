@@ -10,6 +10,10 @@ import com.savdev.jpa.entity.UserEntity;
  */
 public class UserRepositoryServiceBean extends GenericCrudServiceBean<UserEntity, Long> implements UserRepositoryService {
 
+    public UserRepositoryServiceBean() {
+        super(UserEntity.class);
+    }
+
     //do not create crud service here, otherwise you hide it in parent:
     //@Inject
     //CrudService crudService;
