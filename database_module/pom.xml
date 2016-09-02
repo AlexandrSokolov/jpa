@@ -114,6 +114,7 @@
     </dependencies>
 
     <build>
+        <finalName>database</finalName>
         <plugins>
             <plugin>
                 <groupId>org.liquibase</groupId>

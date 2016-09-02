@@ -16,4 +16,8 @@
 
     <name>api_module</name>
 
+    <build>
+        <finalName>api</finalName>
+    </build>
+
 </project>

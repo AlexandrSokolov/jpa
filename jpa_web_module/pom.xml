@@ -17,6 +17,7 @@
     <properties>
         <wildfly-path>wildfly-8.2.1.Final</wildfly-path>
         <wildfly-version>8.2.1.Final</wildfly-version>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
     </properties>
 
     <dependencyManagement>
@@ -51,17 +52,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-            <version>${liquiBaseVersion}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-cdi</artifactId>
-            <version>${liquiBaseVersion}</version>
-        </dependency>
-
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
@@ -89,8 +79,7 @@
         <dependency>
             <groupId>org.jboss.shrinkwrap.resolver</groupId>
             <artifactId>shrinkwrap-resolver-depchain</artifactId>
-            <!--<version>2.1.1</version>-->
-            <version>2.2.0-beta-2</version>
+            <version>2.2.2</version>
             <scope>test</scope>
             <type>pom</type>
         </dependency>
@@ -112,6 +101,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>copy-resources-as-config</id>
@@ -128,6 +118,22 @@
                                 <resource>
                                     <directory>src/test/resources/wildfly8x-resources</directory>
                                     <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-as-modules</id>
+                        <phase>process-test-classes</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <overwrite>true</overwrite>
+                            <outputDirectory>${project.build.directory}/${wildfly-path}/modules/system/layers/base</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/test/resources/wildfly8x-modules</directory>
                                 </resource>
                             </resources>
                         </configuration>
@@ -169,10 +175,29 @@
                     </execution>
                 </executions>
             </plugin>
+            <!--this plugin is needed, to be able to run integration tests vis GUI-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.17</version>
+                <configuration>
+                    <!-- Fork every test because it will launch a separate AS instance -->
+                    <forkCount>1</forkCount>
+                    <reuseForks>false</reuseForks>
+                    <systemPropertyVariables>
+                        <arquillian.launch>wildfly-managed</arquillian.launch>
+                        <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                        <!-- the maven dependency plugin will have already downloaded the server on /target -->
+                        <jboss.home>${project.basedir}/target/wildfly-${wildfly-version}</jboss.home>
+                        <module.path>${project.basedir}/target/wildfly-${wildfly-version}/modules</module.path>
+                    </systemPropertyVariables>
+                    <redirectTestOutputToFile>false</redirectTestOutputToFile>
+                </configuration>
+            </plugin>
+            <!--to run integration tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
                     <!-- Fork every test because it will launch a separate AS instance -->
                     <forkCount>1</forkCount>

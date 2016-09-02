@@ -1,4 +1,27 @@
-create new web module that aggregates all existing module, move integration test into this module,
+http://stackoverflow.com/questions/7227814/jpa-using-alternative-persistence-xml/7227898?noredirect=1#comment65564296_7227898
+http://docs.jboss.org/hibernate/core/3.3/reference/en/html/batch.html
+http://stackoverflow.com/questions/10584179/batch-inserts-using-jpa-entitymanager
+https://docs.jboss.org/hibernate/entitymanager/3.6/reference/en/html/batch.html
+
+move unit tests in jpa_web_module, to integration, you must be able to run them via IDE!
+http://stackoverflow.com/questions/385532/how-to-configure-jpa-for-testing-in-maven
+http://stackoverflow.com/questions/12991384/using-a-different-persistence-xml-file-in-tests-with-arquillian
+https://developer.jboss.org/thread/237174?start=0&tstart=0&_sscc=t
+http://stackoverflow.com/questions/2622424/decouple-a-jpa-entities-jar-from-persistence-xml-in-se-environment
+http://stackoverflow.com/questions/1780341/do-i-need-class-elements-in-persistence-xml
+http://javarevisited.blogspot.com/2014/04/how-to-fix-orghibernatemappingexception-unknown-entity-exception-java.html
+http://www.baeldung.com/hibernate-mappingexception-unknown-entity
+
+http://docs.jboss.org/hibernate/core/3.3/reference/en/html/batch.html
+http://stackoverflow.com/questions/10584179/batch-inserts-using-jpa-entitymanager
+http://www.thoughts-on-java.org/criteria-updatedelete-easy-way-to/
+http://www.java2s.com/Tutorials/Java/JPA/4840__JPA_Query_Paging.htm
+http://www.objectdb.com/java/jpa/persistence/store
+http://www.objectdb.com/java/jpa/query/jpql/delete
+
+
+perhapse use ear instead of war file, you can define explicit jar file their
+resolve testLoadingUsersFromCvs. we need to say which classes are jpa entities, it is not enough to have only annotation
 chanage comment of jpa_component_module, it must inlcude only unit tests
 database module update, cdi bean add, test with integration tests
 User jar instead of war for integration tests,
@@ -24,5 +47,9 @@ Warning:java: Supported source version 'RELEASE_6' from annotation processor 'or
 /home/alexandr/projects/jpa/jpa_repository_module/src/main/java/com/savdev/jpa/repository/UserRepositoryServiceBean.java
 Information:java: Some input files use unchecked or unsafe operations.
 Information:java: Recompile with -Xlint:unchecked for details.
-
+query with pagination, and function that return a entity per each record
+query to update several columns
 think about using cdi without container, what really will change? add integration tests for it.
+jpa properties, document them, http://download.oracle.com/otndocs/jcp/persistence-2.0-fr-eval-oth-JSpec/
+hibernate configuration, all properties
+http://docs.jboss.org/hibernate/core/3.6/reference/en-US/html/session-configuration.html

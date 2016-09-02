@@ -15,6 +15,7 @@
         <module>../jpa_repository_module</module>
         <module>../jpa_component_module</module>
         <module>../boundary_module</module>
+        <module>../jpa_web_module</module>
     </modules>
 
     <properties>
@@ -92,7 +93,7 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junitVersion}</version>
-                <scope>tst</scope>
+                <scope>test</scope>
             </dependency>
             <!--test scope depenencies END-->
         </dependencies>
@@ -110,6 +111,19 @@
                             <propertyName>propertyValue</propertyName>
                          </systemPropertyVariables>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>2.19.1</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

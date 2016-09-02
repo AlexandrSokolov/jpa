@@ -1,7 +1,6 @@
 package com.savdev.jpa.component;
 
 import java.io.File;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.inject.Inject;
@@ -17,14 +16,13 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.google.common.collect.Lists;
 import com.savdev.api.User;
 
 /**
  *
  */
 @RunWith(Arquillian.class)
-public class UserServiceTest {
+public class UserServiceIT {
 
     @Inject
     UserService userService;
@@ -38,10 +36,24 @@ public class UserServiceTest {
     public static WebArchive createDeployment() {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("tests");
         String baseDir = resourceBundle.getString("basedir");
-        File[] files = Maven.resolver().loadPomFromFile(baseDir + File.separator + "pom.xml")
-                .importDependencies(ScopeType.COMPILE, ScopeType.TEST, ScopeType.PROVIDED, ScopeType.RUNTIME, ScopeType.IMPORT).resolve().withTransitivity().asFile();
+        //file must exist in target folder
+//        WebArchive war = ShrinkWrap.createFromZipFile(WebArchive.class, new File( baseDir + File.separator + "target" +
+//                File.separator + "jpa_web.war"));
+//        System.out.println(war.toString(true));
+//        return war;
 
-        WebArchive war = ShrinkWrap.create(WebArchive.class, "user_test.war")
+        File[] files = Maven.resolver().loadPomFromFile(baseDir + File.separator + "pom.xml")
+                .importDependencies(ScopeType.COMPILE).resolve().withTransitivity().asFile();
+//
+//        JavaArchive[] test = Maven.resolver().loadPomFromFile(baseDir + File.separator + "pom.xml")
+//                .importDependencies(ScopeType.COMPILE).resolve().withTransitivity().as(JavaArchive.class);
+//        JavaArchive q = test[6];
+
+
+//        MavenDependencyResolver resolver = DependencyResolvers.use(
+//                MavenDependencyResolver.class).loadMetadataFromPom("pom.xml");
+
+        WebArchive war = ShrinkWrap.create(WebArchive.class, "jpa_web.war")
                 .addAsLibraries(files)
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
         System.out.println(war.toString(true));
@@ -49,21 +61,24 @@ public class UserServiceTest {
         return war;
     }
 
-    @Test
-    public void should_create_greeting() {
-        Assert.assertEquals("test", "test");
-    }
+//    @Test
+//    public void should_create_greeting() {
+//        Assert.assertEquals("test", "test");
+//    }
 
     /*
         users should be loaded by liquibase when application starts up from csv file
      */
     @Test
     public void testLoadingUsersFromCvs() {
-        //users with
-        List<User> users = userService.findByIds(Lists.newArrayList(existingUser1Id, existingUser2Id));
-        Assert.assertEquals(2, users.size());
-        Assert.assertEquals(existingUser1Name, users.get(0).getName());
-        Assert.assertEquals(existingUser2Name, users.get(1).getName());
-        Assert.assertTrue(false);
+        User user = userService.find(existingUser1Id);
+        Assert.assertEquals(existingUser1Name, user.getName());
+//        if (true) return;
+//        //users with
+//        List<User> users = userService.findByIds(Lists.newArrayList(existingUser1Id, existingUser2Id));
+//        Assert.assertEquals(2, users.size());
+//        Assert.assertEquals(existingUser1Name, users.get(0).getName());
+//        Assert.assertEquals(existingUser2Name, users.get(1).getName());
+//        Assert.assertTrue(false);
     }
 }

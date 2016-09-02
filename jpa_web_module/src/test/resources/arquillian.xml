@@ -10,6 +10,7 @@
         <configuration>
             <property name="managementPort">19990</property>
             <property name="serverConfig">standalone-full-test.xml</property>
+            <!--<property name="serverConfig">standalone-full-test-mysql.xml</property>-->
             <property name="javaVmArguments">-Xms256m -Xmx512m -XX:MaxPermSize=512m -Xrunjdwp:transport=dt_socket,address=8787,server=y,suspend=n</property>
         </configuration>
     </container>
